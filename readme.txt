@@ -2,9 +2,9 @@
 Contributors: jdegayojr
 Donate link: https://www.paypal.me/jdegayojr
 Tags: Simple Featured Image, Taxonomy Featured Image, Featured Image, Custom Featured Image, Dynamic Featured Image
-Tested up to: 5.1
-Stable tag: 1.2.2
-Requires PHP: 5.6
+Tested up to: 6.0
+Stable tag: 1.3.1
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -105,6 +105,18 @@ Yes, This plugin provides two widgets.
 8. Slider Widget screenshot
 
 == Changelog ==
+
+= 1.3.1 =
+- Add new setting option to enable Open Graph meta.
+- Sanitize Open Graph meta.
+
+= 1.3.0 =
+- Fixed errors on settings on add a featured image to a post category.
+- Add Open Graph image for single, category and archive page.
+
+= 1.2.4 =
+- Fixed update errors on settings not save.
+- Fixed typo error
 
 = 1.2.2 =
 - Fixed update errors

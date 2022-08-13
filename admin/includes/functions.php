@@ -50,9 +50,10 @@ function wpsfi_get_registered_taxonomy(){
             }
             $object_taxonomies = get_object_taxonomies( $key, 'objects' );
             foreach( $object_taxonomies as $tax => $obj_tax ){
-                if( $obj_tax->show_ui ){
-                    $taxonomies[$tax] = ucfirst( $key ).' '.$obj_tax->label;
+                if( !$obj_tax->show_ui ){
+                    continue;
                 }
+                $taxonomies[$tax] = $obj_tax->label;
             }
         }
     }
@@ -127,13 +128,13 @@ function wpsfi_excluded_post_type_list(){
 }
 function wpsfi_post_type_list(){
     $post_type_list = array();
-    $post_types     = get_post_types( array( '_builtin' => false ) );
+    $post_types     = get_post_types( array( '_builtin' => false ), 'object' );
     if( !empty( $post_types ) ){
         foreach ($post_types as $key => $value ) {
             if( in_array( $key, wpsfi_excluded_post_type_list() ) ){
                 continue;
             }
-            $post_type_list[] = $key;
+            $post_type_list[$key] = $value->label;
         }
     }
     return $post_type_list;

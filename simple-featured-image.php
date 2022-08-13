@@ -3,7 +3,7 @@
  * Plugin Name: Simple Featured Image
  * Plugin URI: http://jonathandegayojr.com/
  * Description: Adds featured image to Post and Custom Post Type taxonomies.
- * Version: 1.2.2
+ * Version: 1.3.1
  * Author: <a href="http://jonathandegayojr.com/">Jonathan Degayo Jr.</a>
  * Text Domain: wp-simple-featured-image
  * License:      GPL2
@@ -30,7 +30,7 @@ if (!defined('ABSPATH')) {
 }
 //* Defined constant
 define( 'WPSFI_TEXTDOMAIN', 'wp-simple-featured-image' );
-define( 'WPSFI_VERSION', '1.2.2' );
+define( 'WPSFI_VERSION', '1.3.1' );
 define( 'WPSFI_URL', plugin_dir_url( __FILE__ ) );
 define( 'WPSFI_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WPSFI_BASENAME', basename( dirname( __FILE__ ) ) );
@@ -40,8 +40,10 @@ require_once(WPSFI_PATH.'admin/includes/functions.php');
 require_once(WPSFI_PATH.'admin/classes/class-simple-featured-image-scripts.php');
 require_once(WPSFI_PATH.'admin/classes/class-simple-featured-image.php');
 require_once(WPSFI_PATH.'admin/classes/class-taxonomy-widgets.php');
+require_once(WPSFI_PATH.'admin/classes/class-open-graph-public.php');
 require_once(WPSFI_PATH.'admin/classes/class-taxonomy-slider-widgets.php');
 
 new WP_Simple_Featured_Image;
+new WP_Simple_Featured_Open_Graph;
 new WPSFI_Taxonomy_Widget;
 new WPSFI_Taxonomy_Slider_Widget;

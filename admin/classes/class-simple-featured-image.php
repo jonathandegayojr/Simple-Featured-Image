@@ -7,8 +7,6 @@ class WP_Simple_Featured_Image{
     public function __construct(){
         $wpsfi_taxonomy         = get_option( 'wpsfi_taxonomy' );
         $wpsfi_post_type        = get_option( 'wpsfi_post_type' );
-
-
         $this->wpsfi_taxonomy   = $wpsfi_taxonomy;
         if( !empty( $wpsfi_taxonomy ) ){
             foreach( $wpsfi_taxonomy as $taxonomy ){
@@ -63,6 +61,7 @@ class WP_Simple_Featured_Image{
     public function register_setting_options(){
         register_setting( 'wpsfi_settings_group', 'wpsfi_taxonomy' );
         register_setting( 'wpsfi_settings_group', 'wpsfi_post_type' );
+        register_setting( 'wpsfi_settings_group', 'wpsfi_enable_opengraph' );
     }
 
     public function plugin_action_links_callback( $plugin_meta, $plugin_file ){
@@ -137,11 +136,21 @@ class WP_Simple_Featured_Image{
                 <tr>
                     <th><?php _e('Select Post Type to Display Featured Image', 'wp-simple-featured-image' ); ?></th>
                     <td>
-                        <?php if( !empty( $post_type_list ) ): foreach( $post_type_list as $postType): ?>
-                        <input type="checkbox" name="wpsfi_post_type[]" value="<?php echo $postType; ?>" <?php echo ( in_array( $postType, $wpsfi_taxonomy ) ) ? 'checked' : '' ; ?>> <?php echo $postType; ?><br/>
+                        <?php if( !empty( $post_type_list ) ): foreach( $post_type_list as $post_slug => $postType): ?>
+                        <input type="checkbox" name="wpsfi_post_type[]" value="<?php echo $post_slug; ?>" <?php echo ( in_array( $post_slug, $wpsfi_post_type ) ) ? 'checked' : '' ; ?>> <?php echo $postType; ?><br/>
                         <?php endforeach; endif; ?>
                     </td>
                 </tr>
+
+                <!-- OG Image settings -->
+                <tr>
+                    <th><?php _e('Enable Open Graph meta?', 'wp-simple-featured-image' ); ?></th>
+                    <td>
+                        <input type="checkbox" name="wpsfi_enable_opengraph" value="1" <?php checked( get_option('wpsfi_enable_opengraph'), 1); ?>><br/>
+                        <p><?php esc_html_e('Note: This will add meta tags for Open Graph.', 'wp-simple-featured-image' ); ?></p>
+                    </td>
+                </tr>
+
             </table>
             <?php submit_button( __( 'Save Settings', 'wp-simple-featured-image' ) ); ?>
         </form>
